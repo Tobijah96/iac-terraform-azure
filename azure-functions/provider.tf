@@ -6,5 +6,8 @@ required_provider
 source = "hashicorp/azurerm"
   }
   version = "=3.0.0"
+provider "azurerm"{
+skip_provider_registration = 
+feature{}
 }
 }
