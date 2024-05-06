@@ -1,10 +1,8 @@
-# Zasób dla grupy zasobów
 resource "azurerm_resource_group" "example_rg" {
   name     = var.resource_group_name
   location = var.location
 }
 
-# Zasób dla konta magazynu
 resource "azurerm_storage_account" "example_storage" {
   name                     = var.storage_account_name
   resource_group_name      = azurerm_resource_group.example_rg.name
@@ -13,7 +11,6 @@ resource "azurerm_storage_account" "example_storage" {
   account_replication_type = var.storage_account_replication_type
 }
 
-# Zasób dla planu usługi Azure Functions
 resource "azurerm_app_service_plan" "example_plan" {
   name                = var.service_plan_name
   location            = azurerm_resource_group.example_rg.location
@@ -26,7 +23,6 @@ resource "azurerm_app_service_plan" "example_plan" {
   }
 }
 
-# Zasób dla aplikacji funkcji Azure
 resource "azurerm_function_app" "example_function_app" {
   name                       = var.function_app_name
   location                   = azurerm_resource_group.example_rg.location
@@ -36,7 +32,6 @@ resource "azurerm_function_app" "example_function_app" {
   storage_account_access_key = azurerm_storage_account.example_storage.primary_access_key
 }
 
-# Zasób dla funkcji aplikacji Azure Functions
 resource "azurerm_function_app_function" "example_function" {
   name                       = "MyFunction"
   function_app_id            = azurerm_function_app.example_function_app.id
